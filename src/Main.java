@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("BENCHMARKING TRAVERSAL and SORT \n -------------------------");
         ArrayList<Long>arr = new ArrayList<>();
-        for(long i=0; i<10000000; i++)
+        for(long i=0; i<100000000; i++)
             arr.add(i);
 
         System.out.println("Traversal Operation : SUM of elements in Array");
@@ -15,7 +15,7 @@ public class Main {
         Long sum = arr.stream().reduce(0L, (acc, a)-> acc + a);
         long ed = System.currentTimeMillis();
         System.out.println("Reduce - " + (ed - st) + "ms");
-`
+
         //Parallel Reduce
         st = System.currentTimeMillis();
         sum = arr.parallelStream().reduce(0L, (acc, a)-> acc + a);
@@ -42,6 +42,8 @@ public class Main {
         ed = System.currentTimeMillis();
         System.out.println("For loop - " + (ed - st) + "ms");
 
+        System.out.println("CONCLUSION: Parallel Reduce is highly optimized and fastest for aggregation problems");
+
         //-----------------SORTING----------------------------//
 
         System.out.println("-------------------------------------------");
@@ -66,5 +68,7 @@ public class Main {
         arr1.sort(Comparator.reverseOrder());
         ed = System.currentTimeMillis();
         System.out.println("Collections Sort - " + (ed - st) + "ms");
+
+        System.out.println("CONCLUSION: Collections/Normal sort is fastest");
     }
 }
